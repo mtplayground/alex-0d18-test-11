@@ -50,7 +50,7 @@ export function HowItWorks() {
     >
       <Container className="py-section-sm sm:py-section">
         <div className="max-w-readable">
-          <p className="text-brand-700 mb-3 text-sm font-semibold tracking-wide uppercase">
+          <p className="text-brand-700 mb-3 text-sm font-semibold tracking-wide">
             How it works
           </p>
           <h2
