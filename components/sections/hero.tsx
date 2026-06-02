@@ -17,7 +17,7 @@ export function Hero() {
           <p className="text-brand-700 mb-5 text-sm font-semibold tracking-wide uppercase">
             {seoDefaults.siteName}
           </p>
-          <p className="text-lead text-accent-500 mb-4 font-medium">
+          <p className="text-lead text-accent-700 mb-4 font-medium">
             {seoDefaults.tagline}
           </p>
           <h1
