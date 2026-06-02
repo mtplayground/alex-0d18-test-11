@@ -1,14 +1,14 @@
 export default function Home() {
   return (
-    <div className="flex flex-1 items-center justify-center bg-zinc-50 px-6 py-24 font-sans text-zinc-950 dark:bg-black dark:text-zinc-50">
-      <main className="w-full max-w-2xl">
-        <p className="mb-4 text-sm font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+    <div className="bg-surface-muted px-gutter py-section-sm text-ink dark:bg-surface-inverse dark:text-ink-inverse flex flex-1 items-center justify-center font-sans">
+      <main className="max-w-readable w-full">
+        <p className="text-brand-700 dark:text-brand-300 mb-4 text-sm font-medium tracking-wide uppercase">
           Issue #1
         </p>
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="text-display-sm text-brand-950 sm:text-display font-semibold">
           Next.js App Router is ready.
         </h1>
-        <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+        <p className="text-lead text-ink-muted mt-6 dark:text-zinc-300">
           TypeScript, ESLint, Tailwind CSS, and static export support are
           configured for the project baseline.
         </p>
