@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero";
+import { HowItWorks } from "@/components/sections/how-it-works";
 import { ValueProposition } from "@/components/sections/value-proposition";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <main>
       <Hero />
       <ValueProposition />
+      <HowItWorks />
     </main>
   );
 }
