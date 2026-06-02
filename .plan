@@ -1,0 +1,52 @@
+# myClawTeam Architecture Plan
+
+## Product Context
+
+The GitHub issues define the product brand as `myClawTeam`. The target is a statically exported Next.js App Router landing page for "Agent Team for Founders" with the tagline "You just talk, we handle the rest". No `PRODUCT.md` is present in the checked-out repository, so future sessions should preserve the issue-defined brand unless a `PRODUCT.md` is later added.
+
+## Module Structure
+
+- `app/layout.tsx`: root shell, global metadata defaults, JSON-LD injection, global font loading, smooth-scroll support.
+- `app/page.tsx`: landing page composition in the required order: Hero, ValueProp, HowItWorks, Features, Footer.
+- `app/globals.css`: Tailwind layers, CSS variables, base body styles, focus styles, theme tokens where appropriate.
+- `app/sitemap.ts`, `app/robots.ts`: static-export-compatible SEO routes.
+- `app/opengraph-image.tsx`: dynamic OG image for brand name and tagline.
+- `components/sections/`: section components (`hero.tsx`, `value-proposition.tsx`, `how-it-works.tsx`, `features.tsx`, `footer.tsx`).
+- `components/ui/`: shadcn/ui primitives, including Button and Card; add a local Container primitive if shadcn does not provide one directly.
+- `lib/env.ts`: typed access to public build-time environment variables.
+- `lib/seo.ts`: shared metadata helper and canonical URL handling.
+- `lib/content.ts`: shared landing-page copy/data arrays for benefits, steps, features, footer links, and CTA labels.
+- `tests/` or colocated `*.test.tsx`: Vitest and React Testing Library unit tests for section components.
+- `e2e/`: Playwright smoke and accessibility tests.
+
+## Shared Types and Data
+
+- Define small content item types near the data they serve, such as `Benefit`, `ProcessStep`, `Feature`, and `FooterLink`.
+- Keep UI components data-driven where sections repeat cards or steps, but avoid broad abstractions until repeated structure proves useful.
+- Centralize brand strings and canonical URLs in `lib/content.ts` and `lib/seo.ts` to keep SEO, OG, JSON-LD, tests, and page copy consistent.
+
+## Issue Dependencies
+
+1. Issue #1 creates the Next.js TypeScript App Router baseline and static export configuration.
+2. Issue #2 depends on #1 and establishes Tailwind theme tokens, Prettier, and linting.
+3. Issue #3 depends on #2 and installs shadcn/ui primitives under `components/ui/`.
+4. Issue #4 depends on #1 and creates `.env.example`, `lib/env.ts`, and README environment docs.
+5. Issue #5 depends on #4 and adds metadata helpers, sitemap, and robots.
+6. Issue #6 depends on #5 and adds OG image generation plus JSON-LD.
+7. Issues #7-#11 depend on the component foundation from #3 and implement individual landing sections.
+8. Issue #12 depends on all section issues plus SEO foundation and composes the final page/layout polish.
+9. Issue #13 depends on #1 and adds Vitest plus React Testing Library.
+10. Issue #14 depends on the section components and test tooling.
+11. Issue #15 depends on the build/lint foundation and adds Playwright smoke coverage.
+12. Issue #16 depends on Playwright and UI completion to run axe/Lighthouse-focused fixes.
+13. Issue #17 depends on static export, tooling, and UI completion to verify `out/` and document deployment.
+
+## Key Design Decisions
+
+- Use Next.js App Router with `output: "export"` from the beginning so routing, metadata, and deployment docs are constrained by static export behavior.
+- Keep the landing page server-rendered by default; only introduce client components for controls or behavior that requires browser APIs.
+- Use Tailwind theme extension for brand colors, spacing, typography, and focus states; keep section layout styles in component class names unless repetition justifies helper components.
+- Prefer accessible semantic sections with explicit headings, descriptive links, visible focus states, and sufficient color contrast from the first UI pass.
+- Use lucide-react for step and feature icons, and shadcn/ui Button/Card primitives for consistent interactive and card styling.
+- Treat env vars as public build-time inputs only: `NEXT_PUBLIC_SITE_URL` required for canonical URLs, `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` optional for analytics.
+- Tests should assert durable product copy, section structure, CTA/link presence, and no-console-error smoke behavior rather than implementation details.
