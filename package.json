@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 8080",
     "build": "next build",
+    "verify:export": "rm -rf out && npm run build && test -f out/index.html && test -f out/robots.txt && test -f out/sitemap.xml && test -d out/_next",
     "start": "serve out -l tcp://0.0.0.0:8080",
     "test": "vitest",
     "test:a11y": "playwright test tests/e2e/accessibility.spec.ts",
