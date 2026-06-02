@@ -14,6 +14,15 @@ export default defineConfig({
   test: {
     css: true,
     environment: "jsdom",
+    exclude: [
+      "**/node_modules/**",
+      "**/.git/**",
+      ".next/**",
+      "out/**",
+      "playwright-report/**",
+      "test-results/**",
+      "tests/e2e/**",
+    ],
     globals: true,
     passWithNoTests: true,
     setupFiles: ["./vitest.setup.ts"],
