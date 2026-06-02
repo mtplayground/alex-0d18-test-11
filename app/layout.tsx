@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { createMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,10 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Next.js App Router Baseline",
-  description: "TypeScript, ESLint, Tailwind CSS, and static export baseline.",
-};
+export const metadata: Metadata = createMetadata();
 
 export default function RootLayout({
   children,
